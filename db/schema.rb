@@ -18,6 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_11_115653) do
     t.datetime "updated_at", null: false
   end
 
+
   create_table "operations", force: :cascade do |t|
     t.decimal "amount"
     t.datetime "odate"
