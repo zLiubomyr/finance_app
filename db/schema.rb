@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_11_115653) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_28_213809) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
 
   create_table "operations", force: :cascade do |t|
     t.decimal "amount"
@@ -26,6 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_11_115653) do
     t.integer "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "otype"
     t.index ["category_id"], name: "index_operations_on_category_id"
   end
 

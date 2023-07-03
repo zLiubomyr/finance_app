@@ -1,14 +1,35 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Categories</h1>
+<h1>Категорії транзакцій</h1>
 
-<div id="categories">
-  <% @categories.each do |category| %>
-    <%= render category %>
-    <p>
-      <%= link_to "Show this category", category %>
-    </p>
-  <% end %>
+<div class="table-responsive">
+  <table class="table">
+
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Категорія</th>
+      <th scope="col">Опис</th>
+      <th scope="col">Управління</th>
+    </tr>
+    </thead>
+    <tbody class="table-group-divider">
+    <% @categories.each do |category| %>
+      <tr>
+        <td> <%= category.id %></td>
+        <td> <%= category.name %></td>
+        <td> <%= category.description %></td>
+        <td style="width:50px"><%= button_to "<i class=\"bi bi-pencil-square\"></i>".html_safe, edit_category_path(category), method: :get, class: "btn btn-outline-secondary" %></td>
+        <td><%= button_to "<i class=\"bi bi-trash3\"></i>".html_safe, category, method: :delete, class: "btn btn-outline-danger" %></td>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+
+  </table>
 </div>
 
-<%= link_to "New category", new_category_path %>
+<%#= link_to "New category", new_category_path %>
+<%= button_to "Створити категорію", new_category_path, method: :get, class: "btn btn-outline-success" %>
+
+<%= paginate @categories %>
