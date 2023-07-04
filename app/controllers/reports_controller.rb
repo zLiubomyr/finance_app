@@ -4,13 +4,15 @@ class ReportsController < ApplicationController
   end
 
   def report_by_category
-    # @from_d =
-    # @to_d
-    # @to_chart=Operation.select(:categories.name).joins(:category).where(odate: params[:from_r] .. params[:to_r]).group(:categories.name).sum(:amount)
-
+    @by_categories = Operation.joins( :category )
+                              .where( odate: params[:from_r]..params[:to_r] )
+                              .group( 'categories.name' )
+                              .sum(:amount )
   end
 
   def report_by_dates
-    @to_chart=Operation.select(:categories.name).joins(:category).where(odate: params[:from_r] .. params[:to_r]).group(:categories.name).sum(:amount)
+    @operations = Operation.where( odate: params[ :from_r ]..params[:to_r ])
+                           .group("DATE(odate)")
+                           .sum(:amount ).map{| a, b | [ a.to_s, b]}
   end
 end

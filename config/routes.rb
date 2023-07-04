@@ -5,6 +5,11 @@ Rails.application.routes.draw do
 
   resources :main
   resources :reports
+  # do
+  #   get 'report_by_category', to: 'reports#report_by_category'
+  #   get 'report_by_dates', to: 'reports#report_by_dates'
+  # end
+
   resources :operations
   resources :categories
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

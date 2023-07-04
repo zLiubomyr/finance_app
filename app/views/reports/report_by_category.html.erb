@@ -2,53 +2,69 @@
 
 <p>Сумарні витрати за катергоріями</p>
 
-<div>
-  <canvas id="myChart" width="400" height="500" ></canvas>
-</div>
+<div class="row">
+  <div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="card">
+      <div class="card-body">
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <div>
+          <canvas id="myChart" width="400" height="500" ></canvas>
+        </div>
 
-<script>
-    const ctx = document.getElementById('myChart');
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: <%= raw @to_chart.map{|a,b| a} %>,
-            datasets: [{
-                label: '# of Votes',
-                data: <%= raw @to_chart.map{|a,b| b} %>,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: false,
-            scales: {
-                y: {
-                    beginAtZero: true
+        <script>
+            const ctx = document.getElementById('myChart');
+
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: <%= raw @by_categories.map{ |a,b| a } %>,
+                    datasets: [{
+                        label: '# of Votes',
+                        data: <%= raw @by_categories.map{ |a,b| b } %>,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
                 }
-            }
-        }
-    });
-</script>
+            });
+        </script>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
 
-<div class="table-responsive">
-<table class="table">
+            <thead>
+            <tr>
+              <th scope="col">Категорія</th>
+              <th scope="col">Сума</th>
+            </tr>
+            </thead>
+            <tbody class="table-group-divider">
+            <% @by_categories.each do |a,b| %>
+              <tr>
+                <td> <%= a %></td>
+                <td> <%= b %></td>
+              </tr>
+            <% end %>
+            </tbody>
 
-  <thead>
-  <tr>
-    <th scope="col">Категорія</th>
-    <th scope="col">Сума</th>
-  </tr>
-  </thead>
-  <tbody class="table-group-divider">
-  <% @to_chart.each do |a,b| %>
-    <tr>
-      <td> <%= a %></td>
-      <td> <%= b %></td>
-    </tr>
-  <% end %>
-  </tbody>
-
-</table>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+

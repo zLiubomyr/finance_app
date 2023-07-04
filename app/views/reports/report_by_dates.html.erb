@@ -1,2 +1,68 @@
-<h1>Reports#report_by_dates</h1>
-<p>Find me in app/views/reports/report_by_dates.html.erb</p>
+<h1>Звіт подобових операцій</h1>
+<p>ГІСТОГРАМА</p>
+
+<div class="row">
+  <div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="card">
+      <div class="card-body">
+
+        <div>
+          <canvas id="myChart" ></canvas>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <script>
+            const ctx = document.getElementById('myChart');
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: <%= raw @operations.map{ |a,b| a} %>,
+                    datasets: [{
+                        label: '# BY DATE',
+                        data: <%= raw @operations.map{ |a,b| b} %>,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+
+            <thead>
+            <tr>
+              <th scope="col">Дата</th>
+              <th scope="col">Сума</th>
+            </tr>
+            </thead>
+            <tbody class="table-group-divider">
+            <% @operations.each do |operation|%>
+              <tr>
+                <td> <%= operation[0] %></td>
+                <td> <%= operation[1] %></td>
+              </tr>
+            <% end %>
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

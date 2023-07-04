@@ -12,31 +12,31 @@
   <% end %>
 
   <div>
-    <%= form.label :amount, style: "display: block" %>
+    <%= form.label :amount, "Сума:", style: "display: block" %>
     <%= form.text_field :amount %>
   </div>
 
   <div>
-    <%= form.label :odate, style: "display: block" %>
+    <%= form.label :odate, "Дата:", style: "display: block" %>
     <%= form.datetime_field :odate, value: (DateTime::now.strftime('%Y-%m-%dT%H:%M:%S') if @operation.new_record?) %>
   </div>
 
   <div>
-    <%= form.label :otype, style: "display: block" %>
+    <%= form.label :otype, "Категорія (в розробці):",style: "display: block" %>
     <%= form.text_field :otype %>
   </div>
 
   <div>
-    <%= form.label :description, style: "display: block" %>
+    <%= form.label :description, "Опис:", style: "display: block" %>
     <%= form.text_field :description %>
   </div>
-
+<br>
   <div>
+    <%= form.label :description, "Категорія:", style: "display: block" %>
     <%= select(:operation, :category_id, options_for_select(@categories)) %>
   </div>
-
-
+  <br>
   <div>
-    <%= form.submit class: "btn btn-success" %>
+    <%= form.submit "Створити операцію", class: "btn btn-outline-success" %>
   </div>
 <% end %>
