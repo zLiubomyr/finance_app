@@ -1,0 +1,54 @@
+<h1>Діаграма категорій</h1>
+
+<p>Сумарні витрати за катергоріями</p>
+
+<div>
+  <canvas id="myChart" width="400" height="500" ></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: <%= raw @to_chart.map{|a,b| a} %>,
+            datasets: [{
+                label: '# of Votes',
+                data: <%= raw @to_chart.map{|a,b| b} %>,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+<div class="table-responsive">
+<table class="table">
+
+  <thead>
+  <tr>
+    <th scope="col">Категорія</th>
+    <th scope="col">Сума</th>
+  </tr>
+  </thead>
+  <tbody class="table-group-divider">
+  <% @to_chart.each do |a,b| %>
+    <tr>
+      <td> <%= a %></td>
+      <td> <%= b %></td>
+    </tr>
+  <% end %>
+  </tbody>
+
+</table>
+</div>

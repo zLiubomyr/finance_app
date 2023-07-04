@@ -1,0 +1,55 @@
+<br><h1>ГЕНЕРАТОР ЗВІТІВ</h1>
+<br><p>Заповніть необхідні поля та оберіть діюі</p><br>
+
+<form action="report_by_dates.html.erb" method="get">
+  <label for="from_r">Початок</label>
+  <input type="date" id="from_r" name="from_r"> <br>
+  <label for="to_r">Кінець</label>
+  <input type="date" id="to_r" name="to_r"> <br>
+  <label for="type_r">Тип операції</label>
+  <select name="type_r" id="type_r">
+    <option value="Дохід">Income</option>
+    <option value="Витрати">Expense</option>
+  </select><br>
+  <label for="cate_r">Категорія</label>
+  <input type="text" id="cate_r" name="cate_r"> <br>
+
+  <input type="submit" value="Зберегти">
+
+  <%= render template: "reports/report_by_category" %>
+
+
+
+<!--  <div>-->
+<!--    <canvas id="myChart" width="400" height="500" ></canvas>-->
+<!--  </div>-->
+
+<!--  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>-->
+
+<!--  <script>-->
+<!--      const ctx = document.getElementById('myChart');-->
+
+<!--      new Chart(ctx, {-->
+<!--          type: 'doughnut',-->
+<!--          data: {-->
+<!--              labels: <%#= raw @to_chart.map{|a,b| a} %>,-->
+<!--              datasets: [{-->
+<!--                  label: '# of Votes',-->
+<!--                  data: <%#= raw @to_chart.map{|a,b| b} %>,-->
+<!--                  borderWidth: 1-->
+<!--              }]-->
+<!--          },-->
+<!--          options: {-->
+<!--              responsive: false,-->
+<!--              scales: {-->
+<!--                  y: {-->
+<!--                      beginAtZero: true-->
+<!--                  }-->
+<!--              }-->
+<!--          }-->
+<!--      });-->
+<!--  </script>-->
+
+
+
+</form>
