@@ -33,10 +33,10 @@
 <br>
   <div>
     <%= form.label :description, "Категорія:", style: "display: block" %>
-    <%= select(:operation, :category_id, options_for_select(@categories)) %>
+    <%= select_tag 'operation[category_id]', options_for_select(@categories), class: 'btn btn-danger dropdown-toggle' %>
   </div>
   <br>
   <div>
-    <%= form.submit "Створити операцію", class: "btn btn-outline-success" %>
+    <%= form.submit "Зберегти операцію", class: "btn btn-outline-success" %>
   </div>
 <% end %>

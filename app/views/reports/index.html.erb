@@ -1,5 +1,5 @@
 <br><h1>ГЕНЕРАТОР ЗВІТІВ</h1>
-<br><p>Заповніть необхідні поля та оберіть діюі</p><br>
+<br><p>Оберіть період!</p><br>
 
 
 
@@ -8,12 +8,12 @@
     <div class="card">
       <div class="card-body">
         <%= form_with url: "reports/report_by_dates", method: :get do |form| %>
-          <%= form.label :from_r, "Оберіть період - Початок:" %>
+          <%= form.label :from_r, "Початок:" %>
           <%= form.date_field :from_r, value: valid_time_format %>
           <br>
           <%= form.label :to_r, "Кінець:" %>
           <%= form.date_field :to_r, value: valid_time_format %>
-          <br><br><br><br>
+          <br><br>
           <%= form.submit "Графік щоденних операцій", class: "btn btn-outline-success" %>
         <% end %>
       </div>
@@ -23,15 +23,15 @@
     <div class="card">
       <div class="card-body">
         <%= form_with url: "reports/report_by_category", method: :get do |form| %>
-          <%= form.label :from_r, "Оберіть період - Початок:" %>
+          <%= form.label :from_r, "Початок:" %>
           <%= form.date_field :from_r, value: valid_time_format %>
           <br>
           <%= form.label :to_r, "Кінець:" %>
           <%= form.date_field :to_r, value: valid_time_format %>
-          <br><br>
+          <br>
           <%#= form.label "Оберіть категорію: " %>
           <%#= form.collection_select :category_id, Category.all, :id, :name %>
-          <br><br>
+          <br>
           <%= form.submit "Діаграма операцій в розрізі категорій", class: "btn btn-outline-success"%>
         <% end %>
       </div>
