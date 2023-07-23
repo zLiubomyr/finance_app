@@ -1,41 +1,13 @@
 <br><h1>ГЕНЕРАТОР ЗВІТІВ</h1>
 <br><p>Оберіть період!</p><br>
 
-
-
-<div class="row">
-  <div class="col-sm-6 mb-3 mb-sm-0">
-    <div class="card">
-      <div class="card-body">
-        <%= form_with url: "reports/report_by_dates", method: :get do |form| %>
-          <%= form.label :from_r, "Початок:" %>
-          <%= form.date_field :from_r, value: valid_time_format %>
-          <br>
-          <%= form.label :to_r, "Кінець:" %>
-          <%= form.date_field :to_r, value: valid_time_format %>
-          <br><br>
-          <%= form.submit "Графік щоденних операцій", class: "btn btn-outline-success" %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <%= form_with url: "reports/report_by_category", method: :get do |form| %>
-          <%= form.label :from_r, "Початок:" %>
-          <%= form.date_field :from_r, value: valid_time_format %>
-          <br>
-          <%= form.label :to_r, "Кінець:" %>
-          <%= form.date_field :to_r, value: valid_time_format %>
-          <br>
-          <%#= form.label "Оберіть категорію: " %>
-          <%#= form.collection_select :category_id, Category.all, :id, :name %>
-          <br>
-          <%= form.submit "Діаграма операцій в розрізі категорій", class: "btn btn-outline-success"%>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
-
+<%= form_with url: "#", local: true do |form| %>
+  <%= form.label :start_date, "Початок:" %>
+  <%= form.date_field :start_date, value: (Date.today - 1.month).strftime('%Y-%m-%d') %>
+<br><br>
+  <%= form.label :end_date, "Кінець:" %>
+  <%= form.date_field :end_date, value: Date.today.strftime('%Y-%m-%d') %>
+<br><br>
+  <%= form.submit "Графік щоденних операцій", formaction: reports_report_by_dates_path, formmethod: "get", class: "btn btn-outline-success" %>
+  <%= form.submit "Діаграма операцій в розрізі категорій", formaction: reports_report_by_category_path, formmethod: "get", class: "btn btn-outline-success" %>
+<% end %>
